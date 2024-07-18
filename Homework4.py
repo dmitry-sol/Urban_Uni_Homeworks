@@ -1,6 +1,6 @@
 # Homework4
 
-my_string = input('Введите произвольную строку такста: ')
+my_string = input('Введите произвольную строку тeкста: ')
 length = len(my_string)
 print('Длина строки:', length, 'символ(-а/ов).')
 print('Строка в ВЕРХНЕМ регистре:', my_string.upper())
