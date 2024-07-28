@@ -12,8 +12,8 @@ for j in range(numbers-1):
         s = a + b
         if numbers % s == 0:
             psw = psw + str(a) + str(b)
-            if s == numbers:
-                break
+        if s == numbers:
+            break
 
 print(numbers, '-', psw)
 print()
