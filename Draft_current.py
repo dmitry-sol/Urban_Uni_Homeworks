@@ -6,7 +6,7 @@ import time as t
 class User:
     def __init__(self, nickname, password, age):
         self.nickname = nickname
-        self.password = hash(password)
+        self.password = password
         self.age = age
 
     def __eq__(self, other):
