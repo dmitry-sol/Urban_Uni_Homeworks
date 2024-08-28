@@ -1,6 +1,7 @@
 # module_5_hard
 # Дополнительное практическое задание по модулю
 import time as t
+from asyncio import current_task
 
 
 class User:
@@ -9,8 +10,11 @@ class User:
         self.password = hash(password)
         self.age = age
 
-    def get_nick_pass(self):
-        return self.nickname, self.password
+    def get_nick(self):
+        return self.nickname
+
+    def get_pass(self):
+        return self.password
 
     def __eq__(self, other):
         return other.nickname == self.nickname
@@ -44,12 +48,18 @@ class UrTube:
         self.current_user_age = None
 
     def log_in(self, nickname, password):
+        current_user_login = None
         for user in self.users:
-            if (nickname, password) == user.get_nick_pass():
+            if nickname == user.get_nick() and hash(password) == user.get_pass():
                 self.current_user = user
-                return user
-            else:
-                print(f'Пользователь "{nickname}" не найден, пройдите регистрацию\n')
+                print(f'Пользователь "{nickname}" - успешный вход')
+                break
+            elif nickname == user.get_nick() and hash(password) != user.get_pass():
+                print(f'Пароль не верен, повторите вход')
+                current_user_login = 1
+                break
+        if current_user_login == 1:
+            print(f'Пользователь "{nickname}" не существует')
 
     def register(self, nickname, password, age):
         new_user = User(nickname, password, age)
@@ -59,9 +69,10 @@ class UrTube:
             self.current_user_age = new_user.age
             print(f'Новый пользователь "{new_user}" успешно зарегистрирован')
         else:
-            print(f"Пользователь "{nickname}" уже существует")
+            print(f'Пользователь "{nickname}" уже существует')
 
     def log_out(self):
+        print(f'Пользователь "{self.current_user}" покинул UrTube')
         self.current_user = None
 
     def add(self, *videos):
@@ -131,3 +142,16 @@ print('Текущий пользователь: ', ur.current_user)
 
 print('\n= Попытка воспроизведения несуществующего видео =')
 ur.watch_video('Лучший язык программирования 2024 года!')
+
+print('\n= Попытка выхода из учетной записи =')
+ur.log_out()
+print('Текущий пользователь: ', ur.current_user)
+
+print('\n= Проверка на вход зарегистрированного пользователя + возрастное ограничение =')
+ur.watch_video('Для чего девушкам парень программист?')
+ur.log_in('vasya_pupkin', 'lolkekcheburek')
+ur.watch_video('Для чего девушкам парень программист?')
+
+print('\n= Проверка логики на вход зарегистрированного пользователя c ошибкой ввода =')
+ur.log_in('urban_pythonist', 'ScX4vIJClb9YQavjAgF')
+ur.log_in('urban_pythonis', 'iScX4vIJClb9YQavjAgF')
