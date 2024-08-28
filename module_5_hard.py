@@ -46,12 +46,13 @@ class UrTube:
             if nickname == user.nickname and hash(password) == user.password:
                 self.current_user = user
                 print(f'Пользователь "{nickname}" - успешный вход')
-                break
-            elif nickname == user.nickname and hash(password) != user.password:
-                print(f'Пароль не верен, повторите вход')
                 current_user_login = 1
                 break
-        if current_user_login == 1:
+            elif nickname == user.nickname and hash(password) != user.password:
+                print(f'Пароль {password} не верен, повторите вход')
+                current_user_login = 1
+                break
+        if current_user_login is None:
             print(f'Пользователь "{nickname}" не существует')
 
     def register(self, nickname, password, age):
