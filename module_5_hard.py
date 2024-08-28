@@ -57,6 +57,7 @@ class UrTube:
             self.users.append(new_user)
             self.current_user = new_user
             self.current_user_age = new_user.age
+            print(f'Новый пользователь "{new_user}" успешно зарегистрирован')
         else:
             print(f"Пользователь "{nickname}" уже существует")
 
