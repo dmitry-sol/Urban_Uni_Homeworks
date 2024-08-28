@@ -88,6 +88,8 @@ class UrTube:
         for video in self.videos:
             if search_word.lower() in video.title.lower():
                 titles.append(video)
+        if not titles:
+            print(f'По вашему запросу "{search_word}" ничего не найдено')
         return titles
 
     def watch_video(self, title):
@@ -128,6 +130,7 @@ ur.add(v3)
 print('\n= Проверка поиска =')
 print(ur.get_videos('лучший'))
 print(ur.get_videos('ПРОГ'))
+print(ur.get_videos('Абракадабра'))
 
 print('\n= Проверка на вход пользователя и возрастное ограничение =')
 ur.watch_video('Для чего девушкам парень программист?')
