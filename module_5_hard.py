@@ -1,7 +1,6 @@
 # module_5_hard
 # Дополнительное практическое задание по модулю
 import time as t
-from asyncio import current_task
 
 
 class User:
@@ -100,13 +99,12 @@ class UrTube:
                     if not video.adult_mode or (self.current_user_age >= 18 and video.adult_mode == True):
                         print(f'Начинаем просмотр "{title}"')
                         current_video = title
-                        i = 0
-                        t1 = 0
-                        while i < video.duration:
+                        step = 0
+                        while video.time_now < video.duration:
                             t.sleep(0.5)
-                            i += 1
-                            t1 = int(t1 ** (1 / 2))
-                            print(' ' * t1, i, end='')
+                            video.time_now += 1
+                            step = int(step ** (1 / 2))
+                            print(' ' * step, video.time_now, end='')
                         print(' = Конец видео =')
                     else:
                         print('Вам нет 18 лет, пожалуйста покиньте страницу')
