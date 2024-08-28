@@ -16,7 +16,7 @@ class User:
         return self.nickname
 
     def get_nick_pass(self):
-        return self.nickname, self.password, self.age
+        return self.nickname, self.password
 
 
 class Video:
