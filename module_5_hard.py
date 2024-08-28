@@ -94,12 +94,11 @@ class UrTube:
                     if not video.adult_mode or (self.current_user_age >= 18 and video.adult_mode == True):
                         print(f'Начинаем просмотр "{title}"')
                         current_video = title
-                        step = 0
+                        video.time_now = 0
                         while video.time_now < video.duration:
-                            t.sleep(0.5)
                             video.time_now += 1
-                            step = int(step ** (1 / 2))
-                            print(' ' * step, video.time_now, end='')
+                            print(video.time_now, ' ', end='')
+                            t.sleep(0.5)
                         print(' = Конец видео =')
                         video.time_now = 0
                     else:
