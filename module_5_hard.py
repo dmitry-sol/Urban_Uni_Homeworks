@@ -10,10 +10,7 @@ class User:
         self.age = age
 
     def get_nick_pass(self):
-        return self.nickname, self.password, self.age
-
-    def get_age(self):
-        return self.age
+        return self.nickname, self.password
 
     def __eq__(self, other):
         return other.nickname == self.nickname
@@ -45,7 +42,6 @@ class UrTube:
         self.videos = []
         self.current_user = None
         self.current_user_age = None
-        # self.video_adult_mode = False
 
     def __hash__(self):
         return hash(self.password)
@@ -65,7 +61,7 @@ class UrTube:
             self.current_user = new_user
             self.current_user_age = new_user.age
         else:
-            print(f"Пользователь {nickname} уже существует")
+            print(f"Пользователь "{nickname}" уже существует")
 
     def log_out(self):
         self.current_user = None
@@ -75,7 +71,6 @@ class UrTube:
             if video.title not in str(self.videos):
                 self.videos.append(video)
                 print(f'Видео "{video.title}" успешно загружено')
-                # print()
             else:
                 print(f'Видео с именем "{video.title}" уже существует')
 
@@ -92,7 +87,7 @@ class UrTube:
             for video in self.videos:
                 if title == str(video):
                     if not video.adult_mode or (self.current_user_age >= 18 and video.adult_mode == True):
-                        print(f'Начинаем просмотр: {title}')
+                        print(f'Начинаем просмотр "{title}"')
                         current_video = title
                         i = 0
                         t1 = 0
@@ -107,7 +102,7 @@ class UrTube:
                         current_video = title
                         break
             if current_video is None:
-                print(f'Видео с именем {title} не существует')
+                print(f'Видео с именем "{title}" не существует')
         else:
             print('Войдите в аккаунт, чтобы смотреть видео')
 
@@ -126,7 +121,7 @@ print(ur.get_videos('лучший'))
 print(ur.get_videos('ПРОГ'))
 
 print('\n= Проверка на вход пользователя и возрастное ограничение =')
-ur.watch_video('Для чегодевушкам парень программист?')
+ur.watch_video('Для чего девушкам парень программист?')
 ur.register('vasya_pupkin', 'lolkekcheburek', 13)
 ur.watch_video('Для чего девушкам парень программист?')
 ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
