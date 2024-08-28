@@ -146,7 +146,7 @@ ur.watch_video('Для чего девушкам парень программи
 ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
 ur.watch_video('Для чего девушкам парень программист?')
 
-print('\n= Проверка входа в другой аккаунт =')
+print('\n= Проверка регистрации совпадающего пользователя =')
 ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
 print('Текущий пользователь: ', ur.current_user)
 
