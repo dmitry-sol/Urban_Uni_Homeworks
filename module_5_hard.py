@@ -49,7 +49,7 @@ class UrTube:
                 self.current_user = user
                 return user
             else:
-                print(f'Пользователь {nickname} не найден, пройдите регистрацию\n')
+                print(f'Пользователь "{nickname}" не найден, пройдите регистрацию\n')
 
     def register(self, nickname, password, age):
         new_user = User(nickname, password, age)
