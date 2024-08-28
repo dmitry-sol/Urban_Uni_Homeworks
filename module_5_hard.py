@@ -43,9 +43,6 @@ class UrTube:
         self.current_user = None
         self.current_user_age = None
 
-    def __hash__(self):
-        return hash(self.password)
-
     def log_in(self, nickname, password):
         for user in self.users:
             if (nickname, password) == user.get_nick_pass():
