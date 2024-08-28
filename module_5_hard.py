@@ -9,12 +9,6 @@ class User:
         self.password = hash(password)
         self.age = age
 
-    def get_nick(self):
-        return self.nickname
-
-    def get_pass(self):
-        return self.password
-
     def __eq__(self, other):
         return other.nickname == self.nickname
 
@@ -49,11 +43,11 @@ class UrTube:
     def log_in(self, nickname, password):
         current_user_login = None
         for user in self.users:
-            if nickname == user.get_nick() and hash(password) == user.get_pass():
+            if nickname == user.nickname and hash(password) == user.password:
                 self.current_user = user
                 print(f'Пользователь "{nickname}" - успешный вход')
                 break
-            elif nickname == user.get_nick() and hash(password) != user.get_pass():
+            elif nickname == user.nickname and hash(password) != user.password:
                 print(f'Пароль не верен, повторите вход')
                 current_user_login = 1
                 break
