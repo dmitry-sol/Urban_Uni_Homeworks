@@ -6,7 +6,8 @@ class House:
     houses_history = [] # Атрибут класса
 
     def __new__(cls, *args, **kwargs):
-        cls.houses_history.append(args) # Прописываем историю в атрибут класса
+        name_ = args[0]
+        cls.houses_history.append(name_) # Прописываем историю в атрибут класса
         return super().__new__(cls)
 
     def __init__(self, name, number_of_floors):
@@ -27,6 +28,9 @@ class House:
         return self.number_of_floors
 
     def __str__(self):
+        return f'Название: {self.name}, количество этажей: {self.number_of_floors}'
+
+    def __repr__(self):
         return f'Название: {self.name}, количество этажей: {self.number_of_floors}'
 
     def __eq__(self, other):
