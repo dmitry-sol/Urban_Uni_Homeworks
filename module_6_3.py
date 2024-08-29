@@ -8,7 +8,6 @@ class Horse:
         super().__init__(y_distance)
 
     def run(self, dx):
-        self.dx = dx
         self.x_distance = self.x_distance + dx
         return self.x_distance
 
@@ -19,7 +18,6 @@ class Eagle:
         self.sound = sound
 
     def fly(self, dy):
-        self.dy = dy
         self.y_distance = self.y_distance + dy
         return self.y_distance
 
