@@ -3,9 +3,8 @@
 
 class Horse:
     def __init__(self, x_distance=0, sound='Frrr', y_distance=0):
-        self.x_distance = x_distance
-        self.sound = sound
         super().__init__(y_distance)
+        self.x_distance = x_distance
 
     def run(self, dx):
         self.x_distance = self.x_distance + dx
