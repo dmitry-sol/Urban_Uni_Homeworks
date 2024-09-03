@@ -21,7 +21,7 @@ class Figure:
             return False
 
     def get_valid_sides(self, sides):
-        if self.__is_valid_sides(sides):
+        if self.__is_valid_sides(sides) is True:
             return True
         else:
             return False
@@ -40,10 +40,12 @@ class Figure:
         return self.__len__
 
     def set_sides(self, *new_sides):
-        if self.__is_valid_sides(new_sides):
-            self.sides = list(new_sides)
-            return self.sides
+        if self.__is_valid_sides(new_sides) is True:
+            self.__sides = list(new_sides)
+            return list(self.__sides)
 
+    def get_sides(self):
+        return self.__sides
 
 class Circle(Figure):
     sides_count = 1
@@ -65,7 +67,8 @@ class Circle(Figure):
         return p
 
     def get_sides(self):
-        return self.sides
+        self.sides = super().get_sides()
+        return list(self.sides)
 
 
 class Triangle(Figure):
@@ -76,28 +79,27 @@ class Triangle(Figure):
         if self.get_valid_sides(sides):
             self.sides = sides
         else:
-            self.sides = [1] * 3
+            self.__sides = [1] * 3
 
     def __len__(self):
         p = sum(self.sides)
         return p
 
     def get_square(self):
-        p_2 = sum(self.sides) / 2
-        square = (p_2 * (p_2 - self.sides[0]) * (p_2 - self.sides[1]) * (p_2 - self.sides[2])) ** 0.5
+        p_ = sum(self.sides) / 2
+        square = (p_ * (p_ - self.sides[0]) * (p_ - self.sides[1]) * (p_ - self.sides[2])) ** 0.5
         return square
 
     def get_sides(self):
-        return self.sides
-
+        return list(self.sides)
 
 class Cube(Figure):
     sides_count = 1
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
-        if self.get_valid_sides(sides):
-            self.sides = sides * 12
+        if self.get_valid_sides(sides) is True:
+            self.sides = list(sides * 12)
         else:
             self.sides = [1] * 12
 
@@ -142,3 +144,7 @@ print(triangle1.get_color())
 print(len(triangle1))
 # Площадь треугольника
 print(triangle1.get_square())
+#
+print(circle1.__dict__)
+print(triangle1.__dict__)
+print(cube1.__dict__)
