@@ -76,15 +76,15 @@ class Triangle(Figure):
         if self.get_valid_sides(sides):
             self.sides = sides
         else:
-            self.__sides = [1] * 3
+            self.sides = [1] * 3
 
     def __len__(self):
         p = sum(self.sides)
         return p
 
     def get_square(self):
-        p_ = sum(self.sides) / 2
-        square = (p_ * (p_ - self.sides[0]) * (p_ - self.sides[1]) * (p_ - self.sides[2])) ** 0.5
+        p_2 = sum(self.sides) / 2
+        square = (p_2 * (p_2 - self.sides[0]) * (p_2 - self.sides[1]) * (p_2 - self.sides[2])) ** 0.5
         return square
 
     def get_sides(self):
