@@ -118,8 +118,8 @@ class Cube(Figure):
 
 circle1 = Circle((200, 150, 100), 10)  # (Цвет, стороны)
 circle2 = Circle((120, 200, 250), 10, 20)  # (Цвет, стороны)
-cube1 = Cube((222, 35, 130), 6)
-triangle1 = Triangle((50, 100, 150), 5, 5, 7)
+cube1 = Cube((222, 35, 130), 6) # (Цвет, стороны)
+triangle1 = Triangle((50, 100, 150), 5, 5, 7) # (Цвет, стороны)
 
 # Проверка на изменение цветов:
 circle1.set_color(55, 66, 77)  # Изменится
@@ -150,7 +150,7 @@ triangle1.set_color(77, 77, 77)  # Изменится
 print(triangle1.get_color())
 triangle1.set_sides(5, 3, 12, 4, 5)  # Не изменится
 print(triangle1.get_sides())
-triangle1.set_sides(50, 50, 70)  # Не изменится
+triangle1.set_sides(50, 50, 70)  # Изменится
 print(triangle1.get_sides())
 # Периметр треугольника
 print(len(triangle1))
@@ -161,7 +161,7 @@ print(triangle1.get_square())
 cube1.set_color(88, 88, 88)  # Изменится
 print(cube1.get_color())
 cube1.set_sides(100, 3, 12, 4, 5)  # Не изменится
-cube1.set_sides(50)  # Не изменится
+cube1.set_sides(50)  # Изменится
 print(cube1.get_sides())
 print()
 
