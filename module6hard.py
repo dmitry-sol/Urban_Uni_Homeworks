@@ -62,16 +62,18 @@ class Circle(Figure):
             self.sides = [1]
 
     def get_square(self):
+        self.sides = self._Figure__sides
         radius = self.sides[0] / (2 * pi)
         square = pi * radius ** 2
         return square
 
     def __len__(self):
+        self.sides = self._Figure__sides
         p = self.sides[0]
         return p
 
     def get_sides(self):
-        self.sides = super().get_sides()
+        self.sides = self._Figure__sides
         return list(self.sides)
 
 
@@ -86,16 +88,18 @@ class Triangle(Figure):
             self.__sides = [1] * 3
 
     def __len__(self):
+        self.sides = self._Figure__sides
         p = sum(self.sides)
         return p
 
     def get_square(self):
+        self.sides = self._Figure__sides
         p_ = sum(self.sides) / 2
         square = (p_ * (p_ - self.sides[0]) * (p_ - self.sides[1]) * (p_ - self.sides[2])) ** 0.5
         return square
 
     def get_sides(self):
-        self.sides = super().get_sides()
+        self.sides = self._Figure__sides
         return list(self.sides)
 
 
@@ -110,11 +114,12 @@ class Cube(Figure):
             self.sides = [1] * 12
 
     def get_volume(self):
+        self.sides = self._Figure__sides
         volume = self.sides[0] ** 3
         return volume
 
     def get_sides(self):
-        self.sides = super().get_sides()
+        self.sides = self._Figure__sides
         return list(self.sides * 12)
 
 
