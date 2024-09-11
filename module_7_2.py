@@ -15,9 +15,9 @@ def custom_write(file_name, strings):
         key_.append(tell_)
         key_ = tuple(key_)
         keys_.append(key_)
-        value_ = strings[i] + '\n'
+        value_ = strings[i]
         values_.append(value_)
-        file.write(value_)
+        file.write(value_ + '\n')
         i += 1
     strings_positions = dict(zip(keys_, values_))
     file.close()
