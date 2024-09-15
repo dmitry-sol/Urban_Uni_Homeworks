@@ -5,27 +5,17 @@ import re
 
 class WordsFinder:
     def __init__(self, *file_name):
-        self.file_name = file_name
-        self.file_names = []
-        len_ = len(file_name)
-        i = 0
-        while i < len_:
-            self.file_names.append(file_name[i])
-            i += 1
+        self.file_names = file_names
 
     def get_all_words(self):
         all_words = {}
         for file_name in self.file_names:
             with open(file_name, 'r', encoding='utf-8') as file:
-                file_read = file.read()
-                file_read = re.sub('[!@#$%&*()+=;:?\n.,]', ' ', file_read)
-                file_read = file_read.replace(' - ', ' ')
-                file_read = file_read.replace('  ', ' ')
-                file_read = file_read.replace('  ', ' ')
+                file_read = file.read().lower()
+                file_read = re.sub('[,.=!?;:$()+\n]', ' ', file_read)
+                file_read = file_read.replace(' -', '')
                 file_read = file_read.strip()
-                file_read = file_read.lower()
-                file_read = file_read.split()
-                all_words[file_name] = file_read
+                all_words[file_name] = file_read.split()
         return all_words
 
     def find_(self, word):
