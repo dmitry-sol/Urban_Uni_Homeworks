@@ -4,16 +4,13 @@
 def personal_sum(numbers):
     result = 0
     incorrect_data = 0
-    i = 0
     try:
-        while i < len(numbers):
+        for num in numbers:
             try:
-                result = result + numbers[i]
-                i += 1
+                result = result + num
             except TypeError:
-                print(f'Некорректный тип данных для подсчёта суммы - {numbers[i]}')
+                print(f'Некорректный тип данных для подсчёта суммы - {num}')
                 incorrect_data += 1
-                i += 1
     except TypeError:
         print(f'В numbers записан некорректный тип данных')
         return None
