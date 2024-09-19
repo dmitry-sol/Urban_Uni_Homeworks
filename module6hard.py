@@ -9,7 +9,7 @@ class Figure:
     def __init__(self, color, *sides):
         self.__color = color
         self.__sides = sides
-        # self. filled = False
+        # self.filled = False
 
     def get_color(self):
         return self.__color
@@ -44,7 +44,6 @@ class Figure:
             self.__sides = list(new_sides)
             return list(self.__sides)
         else:
-            # self.__sides = [1]
             return self.__sides
 
     def get_sides(self):
@@ -56,10 +55,7 @@ class Circle(Figure):
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
-        if self.get_valid_sides(sides):
-            self.sides = sides
-        else:
-            self.sides = [1]
+        self.sides = sides if self.get_valid_sides(sides) else [1]
 
     def get_square(self):
         self.sides = self._Figure__sides
@@ -82,10 +78,7 @@ class Triangle(Figure):
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
-        if self.get_valid_sides(sides):
-            self.sides = sides
-        else:
-            self.__sides = [1] * 3
+        self.sides = sides if self.get_valid_sides(sides) else [1] * 3
 
     def __len__(self):
         self.sides = self._Figure__sides
@@ -108,10 +101,7 @@ class Cube(Figure):
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
-        if self.get_valid_sides(sides):
-            self.sides = list(sides * 12)
-        else:
-            self.sides = [1] * 12
+        self.sides = list(sides * 12) if self.get_valid_sides(sides) else [1] * 12
 
     def get_volume(self):
         self.sides = self._Figure__sides
@@ -149,6 +139,8 @@ print(len(circle1))
 print(cube1.get_volume())
 print()
 print()
+
+
 
 print(' = РАСШИРЕННАЯ ПРОВЕРКА =')
 print()
