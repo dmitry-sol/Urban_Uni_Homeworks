@@ -7,9 +7,8 @@
 first = 'Мама мыла раму'
 second = 'Рамена мало было'
 
-result_1 = list(map(lambda x, y: x == y, first, second))
-print(result_1)
-print()
+result = list(map(lambda x, y: x == y, first, second))
+print(result)
 
 
 # Замыкание:
