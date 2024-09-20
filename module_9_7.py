@@ -15,9 +15,9 @@ def is_prime(func):
 
 
 @is_prime
-def sum_three_or_more(*args):
+def sum_three(*args):
     return sum(args)
 
 
-result = sum_three_or_more(2, 3, 6)
+result = sum_three(2, 3, 6)
 print(result)
