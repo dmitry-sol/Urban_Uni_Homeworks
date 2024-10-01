@@ -7,7 +7,7 @@ class StepValueError(ValueError):
 
 
 class Iterator:
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args):
         if len(args)==3 and args[2] == 0:
              raise StepValueError
         else:
