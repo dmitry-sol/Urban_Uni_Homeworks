@@ -16,7 +16,7 @@ class Bank:
     def deposit(self):
         for transaction in range(self.transactions):
             any_transaction = random.randint(50, 500)
-            self.balance = self.balance + any_transaction
+            self.balance += any_transaction
             print(f'{transaction + 1}. Пополнение: {any_transaction}. Баланс: {self.balance}')
             if self.balance >= 500:
                 if self.lock.locked():
@@ -28,7 +28,7 @@ class Bank:
             any_transaction = random.randint(50, 500)
             print(f'Запрос на {any_transaction}')
             if any_transaction <= self.balance:
-                self.balance = self.balance - any_transaction
+                self.balance -= any_transaction
                 print(f'{transaction + 1}. Снятие: {any_transaction}. Баланс: {self.balance}.')
             else:
                 print('Запрос отклонён, недостаточно средств')
