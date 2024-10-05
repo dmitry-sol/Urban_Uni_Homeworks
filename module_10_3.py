@@ -15,6 +15,7 @@ class Bank:
         self.lock = lock
 
     def deposit(self):
+        lock_counter = 0
         for transaction in range(self.transactions):
             any_transaction = random.randint(50, 500)
             self.balance += any_transaction
@@ -22,11 +23,15 @@ class Bank:
             if self.balance >= 500:
                 if self.lock.locked():
                     self.lock.release()
+                    lock_counter += 1
+                    print(f'Замок открылся {lock_counter} раз')
             else:
                 continue
+
             sleep(self.sleep_duration)
 
     def take(self):
+        lock_counter = 0
         for transaction in range(self.transactions):
             any_transaction = random.randint(50, 500)
             print(f'Запрос на {any_transaction}')
@@ -36,6 +41,8 @@ class Bank:
             else:
                 print(f'{transaction + 1}. Запрос отклонён, недостаточно средств')
                 self.lock.acquire()
+                lock_counter += 1
+                print(f'Замок закрылся {lock_counter} раз')
             sleep(self.sleep_duration)
 
 
