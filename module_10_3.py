@@ -22,6 +22,8 @@ class Bank:
             if self.balance >= 500:
                 if self.lock.locked():
                     self.lock.release()
+            else:
+                continue
             sleep(self.sleep_duration)
 
     def take(self):
