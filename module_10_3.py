@@ -8,7 +8,7 @@ from time import sleep
 
 class Bank:
 
-    def __init__(self, transactions, sleep_duration, balance=0, lock=threading.Lock()):
+    def __init__(self, transactions, sleep_duration, balance: int = 0, lock=threading.Lock()):
         self.transactions = transactions
         self.sleep_duration = sleep_duration
         self.balance = balance
@@ -25,7 +25,7 @@ class Bank:
                 if self.lock.locked():
                     self.lock.release()
                     self.lock_counter_1 += 1
-                    print(f' - Замок открылся {self.lock_counter_1} раз')
+                    print(f' - Замок открылся {self.lock_counter_1}-й раз')
             else:
                 continue
             sleep(self.sleep_duration)
@@ -43,12 +43,12 @@ class Bank:
                     print(f'{transaction + 1}. Запрос отклонён, недостаточно средств')
                     self.lock.acquire()
                     self.lock_counter_2 += 1
-                    print(f' - Замок закрылся {self.lock_counter_2} раз')
+                    print(f' - Замок закрылся {self.lock_counter_2}-й раз')
             finally:
                 if self.lock.locked():
                     self.lock.release()
                     self.lock_counter_1 += 1
-                    print(f' - Замок открылся, во избежании блокировки программы {self.lock_counter_1} раз')
+                    print(f' - Замок открылся, во избежании блокировки программы {self.lock_counter_1}-й раз')
             sleep(self.sleep_duration)
 
 
