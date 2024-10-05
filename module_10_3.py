@@ -33,10 +33,7 @@ class Bank:
                 print(f'{transaction + 1}. Снятие: {any_transaction}. Баланс: {self.balance}.')
             else:
                 print(f'{transaction + 1}. Запрос отклонён, недостаточно средств')
-                try:
-                    self.lock.acquire()
-                finally:
-                    self.lock.release()
+                self.lock.acquire()
             sleep(self.sleep_duration)
 
 
