@@ -8,13 +8,13 @@ from time import sleep
 
 class Bank:
 
-    def __init__(self, balance=0, lock = threading.Lock()):
+    def __init__(self, transactions, balance=0, lock=threading.Lock()):
+        self.transactions = transactions
         self.balance = balance
         self.lock = lock
 
     def deposit(self):
-        transactions = 100
-        for transaction in range(transactions):
+        for transaction in range(self.transactions):
             one_deposit = random.randint(50, 500)
             self.balance = self.balance + one_deposit
             print(f'{transaction + 1}. Пополнение: {one_deposit}. Баланс: {self.balance}')
@@ -24,8 +24,7 @@ class Bank:
             sleep(0.001)
 
     def take(self):
-        transactions = 100
-        for transaction in range(transactions):
+        for transaction in range(self.transactions):
             one_withdrawal = random.randint(50, 500)
             print(f'Запрос на {one_withdrawal}')
             if 0 < self.balance - one_withdrawal < self.balance:
@@ -37,7 +36,8 @@ class Bank:
             sleep(0.001)
 
 
-bk = Bank()
+transactions = 100
+bk = Bank(transactions)
 
 th1 = threading.Thread(target=Bank.deposit, args=(bk,))
 th2 = threading.Thread(target=Bank.take, args=(bk,))
