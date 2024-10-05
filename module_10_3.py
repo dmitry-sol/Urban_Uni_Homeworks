@@ -32,12 +32,15 @@ class Bank:
                 print(f'{transaction + 1}. Снятие: {any_transaction}. Баланс: {self.balance}.')
             else:
                 print('Запрос отклонён, недостаточно средств')
-                self.lock.acquire()
+                try:
+                    self.lock.acquire()
+                finally:
+                    self.lock.release()
             sleep(0.001)
 
 
-transactions = 100
-bk = Bank(transactions)
+transactions_ = 100
+bk = Bank(transactions_)
 
 th1 = threading.Thread(target=Bank.deposit, args=(bk,))
 th2 = threading.Thread(target=Bank.take, args=(bk,))
