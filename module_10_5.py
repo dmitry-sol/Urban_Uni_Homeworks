@@ -8,7 +8,7 @@ from datetime import datetime
 def read_info(file_name):
     all_data = []
     with open(file_name, 'r') as file:
-        for line in enumerate(file):
+        for line in file:
             line = file.readline()
             all_data.append(line)
 
