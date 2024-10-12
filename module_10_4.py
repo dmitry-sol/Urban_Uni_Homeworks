@@ -28,7 +28,7 @@ class Cafe:
         self.queue = queue.Queue()
 
     def guest_arrival(self, *guests):
-        global _guests  # Доступ метода discuss_guests() к списку гостей
+        global _guests  # Делаем список гостей доступным для метода discuss_guests()
         _guests = guests
         tables_occupied = 0
         for guest in guests:
