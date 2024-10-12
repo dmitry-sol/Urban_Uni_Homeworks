@@ -28,23 +28,23 @@ class Cafe:
         self.queue = queue.Queue()
 
     def guest_arrival(self, *guests):
-        counter = 1
+        tables_occupied = 0
         for guest in guests:
             for table in self.tables:
                 if table.guest is None:
                     table.guest = guest.name
                     print(f'{guest.name} сел(-a) за стол номер {table.number}.')
-                    counter += 1
+                    tables_occupied += 1
                     guest.start()
                     break
-                elif counter > len(tables):
+                elif tables_occupied >= len(tables):
                     self.queue.put(guest)
                     print(f'{guest.name} в очереди.')
                     break
 
     def discuss_guests(self, *guests):
-        counter = 0
-        while counter <= len(tables):
+        tables_free = 0
+        while tables_free <= len(tables):
             for guest in guests:
                 if guest.is_alive():
                     continue
@@ -66,9 +66,9 @@ class Cafe:
 
             for table in self.tables:
                 if table.guest is None:
-                    counter += 1
+                    tables_free += 1
                 else:
-                    counter = 0
+                    tables_free = 0
 
 
 tables = [Table(number) for number in range(1, 6)]
