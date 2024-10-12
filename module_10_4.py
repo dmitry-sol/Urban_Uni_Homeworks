@@ -53,7 +53,8 @@ class Cafe:
                         if table.guest != guest.name:
                             continue
                         else:
-                            print(f'{guest.name} покушал(-а) и ушел(ушла), стол номер {table.number} свободен.')
+                            print(f'{guest.name} покушал(-а) и ушел(ушла)')
+                            print(f'Стол номер {table.number} свободен.')
                             table.guest = None
                             try:
                                 next_guest = self.queue.get(block=False)  # Сделать проверку на доступность очереди
