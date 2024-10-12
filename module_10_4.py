@@ -28,7 +28,7 @@ class Cafe:
         self.queue = queue.Queue()
 
     def guest_arrival(self, *guests):
-        global _guests
+        global _guests  # Доступ метода discuss_guests() к списку гостей
         _guests = guests
         tables_occupied = 0
         for guest in guests:
@@ -78,9 +78,9 @@ class Cafe:
 tables = [Table(number) for number in range(1, 6)]
 
 guests_names = [
-    'Maria', 'Oleg', 'Vakhtang', 'Sergey', 'Darya', 'Arman',
-    'Vitoria', 'Nikita', 'Galina', 'Pavel', 'Ilya', 'Alexandra'
-]
+                'Maria', 'Oleg', 'Vakhtang', 'Sergey', 'Darya', 'Arman',
+                'Vitoria', 'Nikita', 'Galina', 'Pavel', 'Ilya', 'Alexandra'
+                ]
 
 # Создание гостей
 guests = [Guest(name) for name in guests_names]
