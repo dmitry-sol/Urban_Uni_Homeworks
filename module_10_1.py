@@ -27,8 +27,8 @@ stop = datetime.now()
 print(f'Работа функции 4 раза одним потоком, времени потрачено: {stop - start}\n')
 
 # Много потоков
-file_names = [f'example{number}.txt' for number in range(5, 9)]
-thread_args = list(zip(words_value, file_names))
+file_names_threads = [f'example{number}.txt' for number in range(5, 9)]
+thread_args = list(zip(words_value, file_names_threads))
 
 start = datetime.now()
 threads = [Thread(target=write_words, args=(x, y)) for x, y in thread_args]  # потоки
