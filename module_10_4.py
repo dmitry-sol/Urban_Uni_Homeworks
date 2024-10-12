@@ -58,12 +58,13 @@ class Cafe:
                             table.guest = None
                             try:
                                 next_guest = self.queue.get(block=False)
+                            except queue.Empty:
+                                print(end='')
+                            else:
                                 table.guest = next_guest.name
                                 print(f'Следующий гость {table.guest}')
                                 next_guest.start()
                                 print(f'{next_guest.name} Вышел из очереди и сел за стол номер {table.number}')
-                            except queue.Empty:
-                                print(end='')
 
             for table in self.tables:
                 if table.guest is None:
