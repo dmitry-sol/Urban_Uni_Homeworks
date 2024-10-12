@@ -57,7 +57,7 @@ class Cafe:
                             print(f'Стол номер {table.number} свободен.')
                             table.guest = None
                             try:
-                                next_guest = self.queue.get(block=False)  # Сделать проверку на доступность очереди
+                                next_guest = self.queue.get(block=False)
                                 table.guest = next_guest.name
                                 print(f'Следующий гость {table.guest}')
                                 next_guest.start()
