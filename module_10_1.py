@@ -13,7 +13,7 @@ def write_words(word_count, file_name):
             file.write('Какое-то слово № ' + str(i + 1) + '\n')
             sleep(0.1)
         _stop = datetime.now()
-        print(f'Завершилась запись в файл: {file_name}, потраченное время: {_stop-_start}')
+        print(f'Завершилась запись в файл: {file_name}, потраченное время: {_stop - _start}')
 
 
 words_value = [10, 30, 200, 100]
