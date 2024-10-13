@@ -28,8 +28,6 @@ class Cafe:
         self.queue = queue.Queue()
 
     def guest_arrival(self, *guests):
-        global _guests  # Делаем список гостей доступным для метода discuss_guests()
-        _guests = guests
         for guest in guests:
             for table in self.tables:
                 if table.guest is None:
@@ -42,34 +40,26 @@ class Cafe:
                 print(f'{guest.guest_name} в очереди.')
 
     def discuss_guests(self):
-        tables_free = 0
-        while tables_free <= len(tables):
-            for guest in _guests:
-                if guest.is_alive():
-                    continue
-                else:
-                    for table in self.tables:
-                        if table.guest != guest:
-                            continue
-                        else:
-                            print(f'{guest.guest_name} покушал(-а) и ушел(ушла)')
-                            print(f'Стол номер {table.number} свободен.')
-                            table.guest = None
-                            try:
-                                next_guest = self.queue.get(block=False)
-                            except queue.Empty:
-                                print(end='')
-                            else:
-                                table.guest = next_guest
-                                print(f'Следующий гость {table.guest.guest_name}')
-                                next_guest.start()
-                                print(f'{next_guest.guest_name} Вышел из очереди и сел за стол номер {table.number}')
-
+        while Cafe.all_tables_occupied(self):
             for table in self.tables:
-                if table.guest is None:
-                    tables_free += 1
-                else:
-                    tables_free = 0
+                if table.guest is not None and not table.guest.is_alive():
+                    print(f'{table.guest.guest_name} покушал(-а) и ушел(ушла)')
+                    print(f'Стол номер {table.number} свободен.')
+                    table.guest = None
+                    if not self.queue.empty():
+                        next_guest = self.queue.get()
+                        table.guest = next_guest
+                        print(f'Следующий гость {table.guest.guest_name}')
+                        next_guest.start()
+                        print(f'{next_guest.guest_name} Вышел(вышла) из очереди и сел(-а) за стол номер {table.number}')
+
+    def all_tables_occupied(self):
+        tables_occupied = False
+        for table in self.tables:
+            if table.guest is not None:
+                tables_occupied = True
+                break
+        return tables_occupied
 
 
 tables = [Table(number) for number in range(1, 6)]
