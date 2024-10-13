@@ -15,8 +15,8 @@ class Table:
 
 class Guest(Thread):
     def __init__(self, name):
+        self.guest_name = name
         super().__init__()
-        self.name = name
 
     def run(self):
         sleep(randint(3, 8))
@@ -30,19 +30,16 @@ class Cafe:
     def guest_arrival(self, *guests):
         global _guests  # Делаем список гостей доступным для метода discuss_guests()
         _guests = guests
-        tables_occupied = 0
         for guest in guests:
             for table in self.tables:
                 if table.guest is None:
-                    table.guest = guest.name
-                    print(f'{guest.name} сел(-a) за стол номер {table.number}.')
-                    tables_occupied += 1
+                    table.guest = guest
                     guest.start()
+                    print(f'{guest.guest_name} сел(-a) за стол номер {table.number}.')
                     break
-                elif tables_occupied >= len(tables):
-                    self.queue.put(guest)
-                    print(f'{guest.name} в очереди.')
-                    break
+            if not guest.is_alive():
+                self.queue.put(guest)
+                print(f'{guest.guest_name} в очереди.')
 
     def discuss_guests(self):
         tables_free = 0
@@ -52,10 +49,10 @@ class Cafe:
                     continue
                 else:
                     for table in self.tables:
-                        if table.guest != guest.name:
+                        if table.guest != guest:
                             continue
                         else:
-                            print(f'{guest.name} покушал(-а) и ушел(ушла)')
+                            print(f'{guest.guest_name} покушал(-а) и ушел(ушла)')
                             print(f'Стол номер {table.number} свободен.')
                             table.guest = None
                             try:
@@ -63,10 +60,10 @@ class Cafe:
                             except queue.Empty:
                                 print(end='')
                             else:
-                                table.guest = next_guest.name
-                                print(f'Следующий гость {table.guest}')
+                                table.guest = next_guest
+                                print(f'Следующий гость {table.guest.guest_name}')
                                 next_guest.start()
-                                print(f'{next_guest.name} Вышел из очереди и сел за стол номер {table.number}')
+                                print(f'{next_guest.guest_name} Вышел из очереди и сел за стол номер {table.number}')
 
             for table in self.tables:
                 if table.guest is None:
