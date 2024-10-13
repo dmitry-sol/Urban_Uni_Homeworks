@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     # Линейный вызов
     start = datetime.now()
-    list_ = list(map(read_info, file_names))
+    list(map(read_info, file_names))
     stop = datetime.now()
     print(stop-start)
 
