@@ -11,7 +11,7 @@ from PIL import Image
 city = 'Yuzhno-Sakhalinsk'
 url1 = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
 url2 = 'https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png'
-key = '< вставьте код из задания >'  # Мой личный сгенерированный на сайте код
+key = '< вставьте ключ >'  # Мой личный сгенерированный на сайте код
 
 params = {'key': key,
           'q': city,
