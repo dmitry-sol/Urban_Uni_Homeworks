@@ -11,7 +11,7 @@ from PIL import Image
 city = 'Yuzhno-Sakhalinsk'
 url1 = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
 url2 = 'https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png'
-key = '< вставьте ключ >'  # Мой личный сгенерированный на сайте код
+key = '< вставьте код из задания >'  # Мой личный сгенерированный на сайте код
 
 params = {'key': key,
           'q': city,
@@ -79,6 +79,19 @@ def resize(infile, rati):
         print("опять что-то не так")
 
 
+def rotate(infile, degree):
+    try:
+        with Image.open(infile) as im:
+            im = im.rotate(degree)
+            name_ending = f' {str(degree)}'
+            f, e = os.path.splitext(infile)
+            outfile = f + name_ending + e
+            im.show()
+            im.save(outfile)
+    except OSError:
+        print("шо, опять?")
+
+
 if __name__ == '__main__':
     current_condition, weather = get_weather()
     print('\nПрогноз погоды для:', city)
@@ -125,3 +138,4 @@ if __name__ == '__main__':
 
     change_ext(file_name, new_ext)
     resize(file_name, ratio)
+    rotate(file_name, degree=45)
