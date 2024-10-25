@@ -78,7 +78,7 @@ class TournamentTest(TestCase):
         self.all_results[tst_n] = test_3.start()
         self.assertTrue(self.all_results[tst_n][len(self.all_results[tst_n])] == self.runner_3)
 
-        # Дополнительный тест, выявляющий ошибку в логике.
+        # Дополнительный тест, выявляющий ошибку в логике. Бегун 'Андрей' должен быть вторым.
         # self.assertTrue(self.all_results[tst_n][len(self.all_results[tst_n])-1] == self.runner_2)
 
     # Дополнительные тесты.
