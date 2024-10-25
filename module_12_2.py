@@ -1,5 +1,4 @@
 import unittest
-from unittest import TestCase
 
 
 class Runner:
@@ -49,7 +48,7 @@ class Tournament:
         return finishers
 
 
-class TournamentTest(TestCase):
+class TournamentTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -97,8 +96,6 @@ class TournamentTest(TestCase):
     #     self.assertTrue(self.all_results[tst_4][len(self.all_results[tst_4])] == self.runner_3.name)
     #     self.assertTrue(self.all_results[tst_5][len(self.all_results[tst_5])] == self.runner_3.name)
     #     self.assertTrue(self.all_results[tst_6][len(self.all_results[tst_6])] == self.runner_3.name)
-
-
 
     @classmethod
     def tearDownClass(cls):
