@@ -11,8 +11,8 @@ async def start_strongman(name, power):
 
 async def start_tournament():
     tasks = []
-    for k, v in competitors.items():
-        tasks.append(asyncio.create_task(start_strongman(k, v)))
+    for name, power in competitors.items():
+        tasks.append(asyncio.create_task(start_strongman(name, power)))
     for task in tasks:
         await task
 
