@@ -2,10 +2,11 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.dispatcher import FSMContext
 import asyncio
 
-api = ''
+api = '7427471669:AAEqA3zm5Ezv6KoynWuCLyeKR2_qNqM8uVU'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 activity_data = {1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9}
@@ -16,11 +17,8 @@ button_2 = KeyboardButton(text='Рассчитать')
 kb_1.add(button_1)
 kb_1.add(button_2)
 
-kb_2 = ReplyKeyboardMarkup(resize_keyboard=True)
-button_3 = KeyboardButton(text='м')
-button_4 = KeyboardButton(text='ж')
-kb_2.add(button_3)
-kb_2.add(button_4)
+kb_2 = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='м'), KeyboardButton(text='ж')]],
+                           resize_keyboard=True)
 
 
 class UserState(StatesGroup):
@@ -102,3 +100,5 @@ async def all_messages(message):
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
+
+
