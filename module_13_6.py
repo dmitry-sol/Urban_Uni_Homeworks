@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -5,6 +7,8 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.dispatcher import FSMContext
 import asyncio
+
+logging.basicConfig(level=logging.INFO)
 
 api = ''
 bot = Bot(token=api)
@@ -19,7 +23,7 @@ kb_1.add(button_2)
 
 inline_kb_1 = InlineKeyboardMarkup()
 inline_button_3 = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
-inline_button_4 = InlineKeyboardButton(text='Формула расчёта' , callback_data='formulas')
+inline_button_4 = InlineKeyboardButton(text='Формула расчёта', callback_data='formulas')
 inline_kb_1.add(inline_button_3)
 inline_kb_1.add(inline_button_4)
 
@@ -74,7 +78,6 @@ async def formula_info(call):
                               'занимающиеся, например, тяжелой атлетикой, или другими силовыми видами спорта '
                               'с ежедневными тренировками, а также те, кто выполняет тяжелую физическую работу).')
     await call.answer()
-
 
 
 @dp.message_handler(state=UserState.sex)
