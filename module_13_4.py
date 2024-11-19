@@ -12,7 +12,7 @@ activity_data = {1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9}
 class UserState(StatesGroup):
     sex = State()
     age = State()
-    growth = State()
+    height = State()
     weight = State()
     daily_activity = State()
 
@@ -39,10 +39,10 @@ async def set_age(message, state):
 async def set_growth(message, state):
     await state.update_data(age=message.text)
     await message.answer('Введите свой рост')
-    await UserState.growth.set()
+    await UserState.height.set()
 
 
-@dp.message_handler(state=UserState.growth)
+@dp.message_handler(state=UserState.height)
 async def set_weight(message, state):
     await state.update_data(growth=message.text)
     await message.answer('Введите свой вес')
