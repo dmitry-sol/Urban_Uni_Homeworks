@@ -36,7 +36,7 @@ async def set_age(message, state):
 
 
 @dp.message_handler(state=UserState.age)
-async def set_growth(message, state):
+async def set_height(message, state):
     await state.update_data(age=message.text)
     await message.answer('Введите свой рост')
     await UserState.height.set()
@@ -44,7 +44,7 @@ async def set_growth(message, state):
 
 @dp.message_handler(state=UserState.height)
 async def set_weight(message, state):
-    await state.update_data(growth=message.text)
+    await state.update_data(height=message.text)
     await message.answer('Введите свой вес')
     await UserState.weight.set()
 
@@ -69,7 +69,7 @@ async def send_calories(message, state):
     await state.update_data(daily_activity=message.text)
     data = await state.get_data()
     sex_index = 5 if data['sex'] == 'м' else -151
-    calories = round((10 * int(data['weight']) + 6.25 * int(data['growth']) - 5 * int(data['age'])
+    calories = round((10 * int(data['weight']) + 6.25 * int(data['height']) - 5 * int(data['age'])
                       + sex_index) * activity_data[int(data['daily_activity'])])
     await message.answer(f'Ваша норма калорий: {calories}')
     await state.finish()
